@@ -1,5 +1,6 @@
 <section>
     <header>
+        <a href="{{ route('profile.index', $user->id) }}" title="back"><i class="fas fa-chevron-left"></i></a>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
             {{ __('content.profile-info') }}
         </h2>
