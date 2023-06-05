@@ -28,7 +28,7 @@
                 <div class="flex items-center mb-6">
                     <img src="{{ asset('storage/users-avatar/'.$comment->user->avatar) }}" alt="img" class="w-6 h-6 rounded-full object-cover">
                     <div class="ml-6 flex items-center">
-                        <div>{{ $comment->user->name }} |</div>
+                        <a href="{{ route('profile.index', $comment->user->id) }}">{{ $comment->user->name }} |</a>
                         <div class=" ms-2 text-xs italic text-gray-500 dark:text-gray-400 text-center"> 
                             {{ $comment->created_at->diffForHumans() }} 
                             <i class="fi fi-rr-time-quarter-to"></i>
@@ -59,7 +59,7 @@
 
             <!-- Edit Comment -->
             @if ($editingCommentId == $comment->id)
-                <form wire:submit.prevent="updateComment" class="fixed top-1/3 md:top-[40vh] md:left-[45vh] h-auto md:max-h-80 md:w-1/2 w-[90vw] bg-gray-100 py-5 px-4 rounded-md dark:bg-gray-700 dark:text-gray-200 drop-shadow-lg shadow-gray-800">
+                <form wire:submit.prevent="updateComment" class="fixed top-1/3 md:top-[30vh] md:left-[45vh] h-auto md:max-h-80 md:w-1/2 w-[90vw] bg-gray-100 py-5 px-4 rounded-md dark:bg-gray-700 dark:text-gray-200 drop-shadow-lg shadow-gray-800">
                     @csrf
                     <h1 class="text-3xl my-6 font-bold">{{ __('content.edit-comment') }}</h1>
                     <x-textarea rows="3" id="newContent" class="bg-gray-100 block mt-1 w-full h-auto max-h-80 resize-none" name="newContent" wire:model.defer="newContent" :content="$newContent"></x-textarea>

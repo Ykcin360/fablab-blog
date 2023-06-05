@@ -95,7 +95,7 @@
               $post->user->name }}</a>, {{ __('content.publish') }} {{
             $post->created_at->format(__('content.date-format')) }}
           </p>
-          <p class="pb-6 dark:text-gray-400">{{ Str::limit($post->content, 100) }}</p>
+          <a href="{{ route('posts.show', $post) }}" class="pb-6 dark:text-gray-400">{{ Str::limit($post->content, 100) }}</a>
           @auth
           <a href="{{ route('posts.show', $post) }}"
             class="lowercase w-1/2 text-gray-800 hover:text-sky-500 dark:text-gray-400">{{
