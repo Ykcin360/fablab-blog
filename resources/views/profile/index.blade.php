@@ -34,7 +34,7 @@
               @if ($user->gender_id == 1)
               <div title="{{ __('content.male') }}" class="text-center font-extrabold text-gray-200 rounded-full h-7 w-7 bg-indigo-600">
                 &#9794;</div>
-              @elseif($user->gender_id == 1)
+              @elseif($user->gender_id == 2)
               <div title="{{ __('content.female') }}" class="text-center font-extrabold text-gray-200 rounded-full h-7 w-7 bg-pink-600">
                 &#9792;</div>
               @else
@@ -42,9 +42,11 @@
               @endif
             </div>
             @if ( Auth::user() == $user)
-            <a href="{{ route('profile.edit') }}" class="">
-              <x-primary-button>{{ __('content.edit') }}</x-primary-button>
-            </a>
+            <div>
+              <a href="{{ route('profile.edit') }}" class="">
+                <x-primary-button>{{ __('content.edit') }}</x-primary-button>
+              </a>
+            </div>
             @endif
 
           </div>
