@@ -1,0 +1,18 @@
+{
+    "extends": ["web-recommended"],
+    "hints": {
+        "validate-set-cookie-header": "error",
+        "detect-css-reflows/layout": "error",
+        "http-cache": "error",
+        "compat-api/css": [
+            "error",
+            {
+                "ignore": [
+                    "border-radius",
+                    "box-lines",
+                    "-webkit-text-size-adjust"
+                ]
+            }
+        ]
+    }
+}
