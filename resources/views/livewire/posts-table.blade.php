@@ -33,6 +33,7 @@
         <div class="table-cell px-4 py-2 font-bold">{{ __('data.table.owner') }}</div>
         <div class="table-cell px-4 py-2 font-bold">{{ __('data.table.category') }}</div>
         <div class="table-cell px-4 py-2 font-bold">{{ __('data.table.created-at') }}</div>
+        <div class="table-cell px-4 py-2 font-bold">Reactions</div>
         <div class="table-cell px-4 py-2 font-bold">Actions</div>
       </div>
       <div class="table-row-group">
@@ -51,6 +52,9 @@
             </div>
             <div class="h-16 border-b-2 px-4 py-2 md:table-cell">
               {{ $post->created_at }}
+            </div>
+            <div class="h-16 border-b-2 px-4 py-2 md:table-cell">
+              {{ $post->reactions->count() }}
             </div>
             <div class="mb-20 flex h-16 items-center space-x-4 border-b-2 px-4 md:table-cell md:py-2">
               <a href="{{ route('posts.edit', $post) }}" type="button" class="hover:text-yellow-500"

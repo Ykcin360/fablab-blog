@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('reactions', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
+            $table->string('type', 20);
             $table->timestamps();
 
             $table->foreignIdFor(User::class);

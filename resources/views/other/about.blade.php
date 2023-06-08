@@ -48,7 +48,7 @@
         <a type="button" data-te-ripple-init data-te-ripple-color="light"
           href="https://www.orange.mg/" target="_blank"
           class="w-full bg-sky-600 text-white font-bold text-sm normal-case rounded hover:bg-sky-700 flex items-center justify-center px-2 py-3 mt-6">
-          <p>{{ __('content.about-page.visit') }} Orange Madagscar Website</p>
+          <p>{{ __('content.about-page.visit') }} Orange Madagascar Website</p>
         </a>
       </div>
     </div>
