@@ -15,6 +15,34 @@
         <p class="px-8 pb-6 text-gray-700 dark:text-gray-400">
           {{ __('content.about-content') }}
         </p>
+        <div class="px-8 pb-6 text-gray-700 dark:text-gray-400">
+          <span class="font-bold">Personne en charge:</span>
+          <ul>
+            <li>Nom: RANDRIAMBOLOLONA</li>
+            <li>Prénom: Yves Eric</li>
+            <li>Fonction: FabManager</li>
+            <li>Téléphone: +(261) 20 22 418 27</li>
+            <li>Mobile: +(261) 32 05 704 40</li>
+            <li>E-mail: yves.randriambololona@vesosmad.org</li>
+          </ul>
+        </div>
+        <div class="px-8 pb-6 text-gray-700 dark:text-gray-400">
+          <span class="font-bold">Les machines présentes dans un Fablab:</span>
+          <ul>
+            <li>> Découpeuse Laser (TROTEC) : Une machine permettant des découpes et des gravures laser de grande précision sur tous
+            types de supports;</li>
+            <li>> Petite Fraiseuse numérique (SRM20) : Elle est destinée l'usinage de petite piece. Cette machine est surtout utilisée
+            en électronique pour la conception des cartes imprimées support et conducteur électrique des composants électroniques;</li>
+            <li>> Imprimante 3D : C'est une imprimante capable d'exécuter des impressions des pieces en 3 dimensions;</li>
+            <li>> Fraiseuse numérique (ShopBot) : C'est une fraiseuse numérique destinée à la conception de grande piece (surtout utilisé
+            en menuiserie);</li>
+            <li>> Découpeuse Vinyle : C'est une machine destinée la confection de divers autocollants;</li>
+            <li>> Matériels électroniques : Ce sont des matériels destinés à la pratique de l'électronique.</li>
+          </ul>
+        </div>
+        <div class="px-8 pb-6 text-gray-700 dark:text-gray-400">
+          <span class="font-bold">Coordonnées:</span> SOS Villages d’Enfants Madagascar Près Hotel Panorama - Andrainarivo 101 ANTANANARIVO
+        </div>
       </div>
 
       <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-12">
