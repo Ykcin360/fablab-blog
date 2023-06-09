@@ -7,7 +7,7 @@
 
   <x-slot name="header">
     <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200 capitalize">
-      {{ __('navigation.show-post') }} {{ $post->user->name }} - {{ $post->category->name }}
+      {{ __('navigation.show-post') }} <a href="{{ route('profile.index', $post->user->id) }}">{{ $post->user->name }}</a> - {{ $post->category->name }}
     </h2>
   </x-slot>
 
