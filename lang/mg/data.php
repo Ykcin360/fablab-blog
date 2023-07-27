@@ -19,5 +19,6 @@ return [
     'title' => 'Lohateny',
     'owner' => 'Tompony',
     'created-at' => 'Ny',
+    'reactions' => 'Reaction',
   ],
 ];

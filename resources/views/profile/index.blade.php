@@ -42,11 +42,9 @@
               @endif
             </div>
             @if ( Auth::user() == $user)
-            <div>
-              <a href="{{ route('profile.edit') }}" class="">
-                <x-primary-button>{{ __('content.edit') }}</x-primary-button>
-              </a>
-            </div>
+            <a href="{{ route('profile.edit') }}">
+              <x-primary-button class="mt-6 md:m-0">{{ __('content.edit') }}</x-primary-button>
+            </a>
             @endif
 
           </div>

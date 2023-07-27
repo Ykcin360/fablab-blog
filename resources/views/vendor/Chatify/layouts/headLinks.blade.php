@@ -8,6 +8,8 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="url" content="{{ url('').'/'.config('chatify.routes.prefix') }}" data-user="{{ Auth::user()->id }}">
 
+<link rel="icon" href="{{ asset("img/fablab.png") }}">
+
 {{-- scripts --}}
 <script
   src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -21,9 +23,6 @@
 <link href="{{ asset('css/chatify/style.css') }}" rel="stylesheet" />
 <link href="{{ asset('css/chatify/'.$dark_mode.'.mode.css') }}" rel="stylesheet" />
 <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
-<!-- Uicons -->
-<link rel='stylesheet' href='{{ asset('css/uicons/css/uicons-regular-rounded.css') }}'>
-<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 
 {{-- Setting messenger primary color to css --}}
 <style>

@@ -1,6 +1,6 @@
-<div>
+<div class="pb-6">
   <!-- Search Bar -->
-  <div class="relative my-6 flex w-full items-center pl-1 sm:ml-0 sm:pr-2">
+  <div class="relative py-6 flex w-full items-center pl-1 sm:ml-0 sm:pr-2">
     <div class="container relative left-0 z-50 flex">
       <div class="group relative flex w-full items-center">
         <div
@@ -25,9 +25,9 @@
     </div>
   </div>
 
-  <!-- Posts List -->
+  <!-- User List -->
   <div class="mb-6 flex-col items-center justify-around">
-    <div class="table h-full w-full text-sm">
+    <div class="table w-full text-sm text-center md:text-left">
       <div class="table-column text-gray-800 dark:bg-gray-800 dark:text-gray-200 md:table-header-group">
         <div class="table-cell px-4 py-2 font-bold rounded-tl-lg">{{ __('data.table.name') }}</div>
         <div class="table-cell px-4 py-2 font-bold">{{ __('data.table.email') }}</div>
@@ -35,7 +35,7 @@
         <div class="table-cell px-4 py-2 font-bold">{{ __('data.table.role') }}</div>
         <div class="table-cell px-4 py-2 font-bold rounded-tr-lg">Actions</div>
       </div>
-      <div class="table-row-group">
+      <div class="table-row-group text-center md:text-left">
         <!-- User details -->
         @foreach ($users as $user)
           <div
@@ -48,11 +48,13 @@
             <div class="h-16 border-b-2 px-4 py-2 md:table-cell">
               {{ $user->email }}
             </div>
-            {{-- @if ($user->phone_number != null) --}}
-              <div class="h-16 border-b-2 px-4 py-2 md:table-cell">
+            <div class="h-16 border-b-2 px-4 py-2 md:table-cell">
+              @if ($user->phone_number != null)
                 {{ $user->phone_number }}
-              </div>
-            {{-- @endif --}}
+              @else
+                <p>---</p>
+              @endif
+            </div>
             <div class="h-16 border-b-2 px-4 py-2 md:table-cell">
               @if ($user->is_admin == 1)
                 <span class="rounded-lg bg-sky-100 px-2 py-1 font-medium text-sky-800">Admin</span>
@@ -60,7 +62,7 @@
                 <span class="rounded-lg bg-sky-100 px-2 py-1 font-medium text-sky-800">{{ __('content.member') }}</span>
               @endif
             </div>
-            <div class="mb-20 flex h-16 items-center border-b-2 px-4 md:table-cell md:py-2">
+            <div class="mb-20 flex h-16 border-b-2 px-4 md:table-cell md:py-2">
               <button {{ $user == Auth::user() ? 'disabled' : '' }} type="button"
                 class="{{ $user == Auth::user() ? 'text-gray-300 dark:text-gray-400' : 'hover:text-red-500' }}"
                 title="Delete This User" wire:click="deleteUser({{ $user->id }})">
@@ -72,7 +74,7 @@
       </div>
     </div>
     <!-- Pagination -->
-    <div class="mt-6 w-full dark:!text-gray-200">
+    <div class=" mt-3 w-full">
       {{ $users->links() }}
     </div>
   </div>

@@ -7,7 +7,7 @@
 
   <x-slot name="header">
     <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200 capitalize">
-      {{ __('navigation.show-post') }} <a href="{{ route('profile.index', $post->user->id) }}">{{ $post->user->name }}</a> - {{ $post->category->name }}
+      {{ __('navigation.show-post') }} {{ $post->user != null ? $post->user->name : "( User Deleted )" }} - {{ $post->category->name }}
     </h2>
   </x-slot>
 
@@ -21,7 +21,7 @@
           class="rounded-full px-2 text-gray-500 transition-colors duration-200 hover:text-gray-600 dark:hover:text-gray-200">
           <i class="fi fi-rr-home"></i>
         </a>
-        @if (Auth::user()->id == $post->user->id)
+        @if ($post->user != null && Auth::user()->id == $post->user->id)
           <x-dropdown align="right" width="48">
             <x-slot name="trigger">
               <button

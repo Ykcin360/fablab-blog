@@ -103,7 +103,7 @@ class PostController extends Controller
      */
     public function edit(Post $post): View
     {
-        if (Auth::user()->is_admin==false && Gate::denies('update-post', $post)) {
+        if (!Auth::user()->is_admin && Gate::denies('update-post', $post)) {
             abort(403);
         }
 

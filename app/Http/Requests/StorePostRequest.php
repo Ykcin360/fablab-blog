@@ -28,7 +28,7 @@ class StorePostRequest extends FormRequest
         }
 
         return [
-            'title' => 'required|string|min:3',
+            'title' => 'required|string|min:3|max:10',
             'content' => 'required',
             'image' => $imageRule,
             'category' => 'required'

@@ -1,6 +1,9 @@
 <section>
+    <a href="{{ route('profile.index', Auth::user()->id) }}" title="{{ __('navigation.profile') }}" class="hover:opacity-75 transition duration-200 ease-out text-xl md:pb-6">
+        <i class="fi-rr-arrow-alt-circle-left"></i>
+    </a>
+
     <header>
-        <a href="{{ route('profile.index', $user->id) }}" title="back"><i class="fas fa-chevron-left"></i></a>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
             {{ __('content.profile-info') }}
         </h2>

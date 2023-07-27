@@ -31,7 +31,7 @@
             <div class="bg-white dark:bg-gray-800 flex flex-col justify-start p-6 rounded">
               <!-- Article Category & Settings -->
               <div class="flex justify-between align-top">
-                <a href="#" class="text-sky-600 text-sm font-bold uppercase pb-4">{{ $post->category->name }}</a>
+                <div class="text-sky-600 text-sm font-bold uppercase pb-4">{{ $post->category->name }}</div>
                 <x-dropdown align="right" width="48">
                   <x-slot name="trigger">
                     <button

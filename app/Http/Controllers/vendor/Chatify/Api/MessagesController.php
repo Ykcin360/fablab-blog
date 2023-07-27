@@ -275,9 +275,10 @@ class MessagesController extends Controller
     public function search(Request $request)
     {
         $input = trim(filter_var($request['input']));
-        $records = User::where('state', 'created')->where('id','!=',Auth::user()->id)
-                    ->where('name', 'LIKE', "%{$input}%")
-                    ->paginate($request->per_page ?? $this->perPage);
+        $records = User::where('state_id', '1')->where('id', '!=', Auth::user()->id)
+            ->where('first_name', 'LIKE', "%{$input}%")
+            ->orWhere('last_name', 'LIKE', "%{$input}%")
+            ->paginate($request->per_page ?? $this->perPage);
 
         foreach ($records->items() as $index => $record) {
             $records[$index] += Chatify::getUserWithAvatar($record);

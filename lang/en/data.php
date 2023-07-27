@@ -19,6 +19,7 @@ return [
     'title' => 'Title',
     'owner' => 'Owner',
     'created-at' => 'Created At',
+    'reactions' => 'Reactions',
   ],
 
   // // Categories

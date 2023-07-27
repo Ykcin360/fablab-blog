@@ -87,6 +87,6 @@ class User extends Authenticatable
 
     public function messages()
     {
-        return $this->hasMany(ChMessage::class, 'from_id');
+        return $this->hasMany(ChMessage::class, 'to_id');
     }
 }

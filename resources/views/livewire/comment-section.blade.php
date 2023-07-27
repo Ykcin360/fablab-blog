@@ -19,65 +19,71 @@
 
     <!-- List of comments -->
     @forelse ($comments as $comment)
-    <div class="flex flex-col my-6 mx-auto md:max-w-5xl md:py-6 md:flex-row items-start rounded-xl bg-white dark:bg-gray-800 dark:text-gray-200">
+        @if($comment->user !=null)
+        <div class="flex flex-col my-6 mx-auto md:max-w-5xl md:py-6 md:flex-row items-start rounded-xl bg-white dark:bg-gray-800 dark:text-gray-200">
 
-        <!-- User's comments -->
-        
-        <div class="px-6 w-full border-b-2 pb-6">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center mb-6">
-                    <img src="{{ asset('storage/users-avatar/'.$comment->user->avatar) }}" alt="img" class="w-6 h-6 rounded-full object-cover">
-                    <div class="ml-6 flex items-center">
-                        <a href="{{ route('profile.index', $comment->user->id) }}">{{ $comment->user->name }} |</a>
-                        <div class=" ms-2 text-xs italic text-gray-500 dark:text-gray-400 text-center"> 
-                            {{ $comment->created_at->diffForHumans() }} 
-                            <i class="fi fi-rr-time-quarter-to"></i>
+            <!-- User's comments -->
+            
+            <div class="px-6 w-full border-b-2 pb-6">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center my-6">
+                        <img src="{{ asset('storage/users-avatar/'.$comment->user->avatar) }}" alt="img" class="w-6 h-6 rounded-full object-cover">
+                        <div class="ml-6 flex items-center">
+                            <a href="{{ route('profile.index', $comment->user->id) }}" class="hover:text-sky-500">{{ $comment->user->name }} </a>
+                            <div class=" ms-2 text-xs italic text-gray-500 dark:text-gray-400 text-center"> |
+                                {{ $comment->created_at->diffForHumans() }} 
+                                <i class="fi fi-rr-time-quarter-to"></i>
+                            </div>
                         </div>
                     </div>
-                </div>
-                @if (Auth::user()->id == $comment->user->id)
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
-                            <div class="pb-2 font-bold text-lg items-center">. . .</div>
-                        </button>
-                    </x-slot>
+                    @if (Auth::user()->id == $comment->user->id)
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
+                                <div class="pb-2 font-bold text-lg items-center">. . .</div>
+                            </button>
+                        </x-slot>
 
-                    <x-slot name="content">
-                        <!-- Delete Comment -->
-                        <x-dropdown-link class="cursor-pointer" wire:click="deleteComment({{ $comment->id }})">
-                            {{ __('content.delete') }}
-                        </x-dropdown-link>
-                        <!-- Edit Comment -->
-                        <x-dropdown-link class="cursor-pointer" wire:click="editComment({{ $comment->id }})">
-                            {{ __('content.edit') }}
-                        </x-dropdown-link>
-                    </x-slot>
-                </x-dropdown>
+                        <x-slot name="content">
+                            <!-- Delete Comment -->
+                            <x-dropdown-link class="cursor-pointer" wire:click="deleteComment({{ $comment->id }})">
+                                {{ __('content.delete') }}
+                            </x-dropdown-link>
+                            <!-- Edit Comment -->
+                            <x-dropdown-link class="cursor-pointer" wire:click="editComment({{ $comment->id }})">
+                                {{ __('content.edit') }}
+                            </x-dropdown-link>
+                        </x-slot>
+                    </x-dropdown>
+                    @endif
+                </div>
+
+                <!-- Edit Comment -->
+                @if ($editingCommentId == $comment->id)
+                    <form wire:submit.prevent="updateComment" class="fixed top-1/3 md:top-[40vh] md:left-[45vh] h-auto md:max-h-80 md:w-1/2 w-[90vw] bg-gray-100 border-2 border-gray-500 py-5 px-4 rounded-md dark:bg-gray-700 dark:text-gray-200 drop-shadow-lg shadow-gray-800">
+                        @csrf
+                        <h1 class="text-3xl my-6 font-bold">{{ __('content.edit-comment') }}</h1>
+                        <x-textarea rows="3" id="newContent" class="bg-gray-100 block mt-1 w-full h-auto max-h-80 resize-none py-2" name="newContent" wire:model.defer="newContent" :content="$newContent"></x-textarea>
+                        <div class="mt-2 flex justify-between">
+                            <x-primary-button>
+                                {{ __('content.save-comment') }}
+                            </x-primary-button>
+                            <x-primary-button wire:click="cancelEdit()">
+                                {{ __('content.cancel') }}
+                            </x-primary-button>
+                        </div>
+                    </form>
+                @else
+                    <x-textarea rows="3" id="title" class="bg-gray-100 block mt-1 w-full h-auto max-h-80 resize-none dark:text-gray-400 py-2" :content="$comment->content" readonly></x-textarea>
                 @endif
             </div>
-
-            <!-- Edit Comment -->
-            @if ($editingCommentId == $comment->id)
-                <form wire:submit.prevent="updateComment" class="fixed top-1/3 md:top-[30vh] md:left-[45vh] h-auto md:max-h-80 md:w-1/2 w-[90vw] bg-gray-100 py-5 px-4 rounded-md dark:bg-gray-700 dark:text-gray-200 drop-shadow-lg shadow-gray-800">
-                    @csrf
-                    <h1 class="text-3xl my-6 font-bold">{{ __('content.edit-comment') }}</h1>
-                    <x-textarea rows="3" id="newContent" class="bg-gray-100 block mt-1 w-full h-auto max-h-80 resize-none" name="newContent" wire:model.defer="newContent" :content="$newContent"></x-textarea>
-                    <div class="mt-2 flex justify-between">
-                        <x-primary-button>
-                            {{ __('content.save-comment') }}
-                        </x-primary-button>
-                        <x-primary-button wire:click="cancelEdit()">
-                            {{ __('content.cancel') }}
-                        </x-primary-button>
-                    </div>
-                </form>
-            @else
-                <x-textarea rows="3" id="title" class="bg-gray-100 block mt-1 w-full h-auto max-h-80 resize-none dark:text-gray-400" :content="$comment->content" readonly></x-textarea>
-            @endif
+            
         </div>
-        
-    </div>
+        @else
+        <div class="flex flex-col my-6 ps-10 mx-auto md:max-w-5xl md:py-6 md:flex-row items-start rounded-xl bg-white dark:bg-gray-800 dark:text-gray-200">
+            ( User deleted with his comment )
+        </div>
+        @endif
     @empty
         <div class="my-6 p-6 mx-auto md:max-w-5xl md:py-6 md:flex-row items-start rounded-xl bg-white dark:bg-gray-800 dark:text-gray-400">
             {{ __('content.no-comment') }}

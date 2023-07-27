@@ -27,14 +27,16 @@
         <!-- Post List -->
         <div class="px-12 text-gray-500">
             @forelse ($posts as $post)
-            <a href="{{ route('posts.show', $post) }}"
-                class="flex justify-between bg-white dark:bg-gray-800 py-4 px-12 rounded-lg shadow hover:bg-sky-500 hover:text-gray-100 ease-out duration-100 mb-6">
-                <div class="flex space-x-6">
-                    <div><i class="fi fi-rr-user"></i> {{ $post->user->name }}</div>
-                    <div><i class="fi fi-rr-browser"></i> {{ $post->title }}</div>
-                </div>
-                <div class="text-sm">{{ Str::limit($post->content, 100) }}</div>
-            </a>
+                @if($post->user != null)
+                <a href="{{ route('posts.show', $post) }}"
+                    class="flex md:flex-row flex-col justify-between bg-white dark:bg-gray-800 py-4 px-12 rounded-lg shadow hover:bg-sky-500 hover:text-gray-100 ease-out duration-100 mb-6">
+                    <div class="flex md:flex-row flex-col md:space-x-6">
+                        <div><i class="fi fi-rr-user"></i> {{ $post->user->name }}</div>
+                        <div><i class="fi fi-rr-browser"></i> {{ $post->title }}</div>
+                    </div>
+                    <div class="text-sm">{{ Str::limit($post->content, 100) }}</div>
+                </a>
+                @endif
             @empty
             <div class="text-center text-xl">
                 {{ __('content.search-noresult') }}
@@ -49,16 +51,6 @@
     @else
         <div class="px-12 text-gray-500">
             <div class="animate-pulse flex justify-between bg-white dark:bg-gray-800 py-6 px-12 rounded-lg shadow hover:bg-sky-500 hover:text-gray-100 ease-out duration-100 mb-6"></div>
-        </div>
-        <div class="px-12 text-gray-500">
-            <div
-                class="animate-pulse flex justify-between bg-white dark:bg-gray-800 py-6 px-12 rounded-lg shadow hover:bg-sky-500 hover:text-gray-100 ease-out duration-100 mb-6">
-            </div>
-        </div>
-        <div class="px-12 text-gray-500">
-            <div
-                class="animate-pulse flex justify-between bg-white dark:bg-gray-800 py-6 px-12 rounded-lg shadow hover:bg-sky-500 hover:text-gray-100 ease-out duration-100 mb-6">
-            </div>
         </div>
     @endisset
 <div>

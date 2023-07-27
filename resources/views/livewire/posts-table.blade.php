@@ -26,14 +26,14 @@
   </div>
 
   <!-- posts List -->
-  <div class="mb-6 flex items-center justify-around">
+  <div class="mb-6 md:flex-col items-center justify-around">
     <div class="table h-full w-full text-sm">
       <div class="table-column rounded-md text-gray-800 dark:bg-gray-800 dark:text-gray-200 md:table-header-group">
         <div class="table-cell px-4 py-2 font-bold">{{ __('data.table.title') }}</div>
         <div class="table-cell px-4 py-2 font-bold">{{ __('data.table.owner') }}</div>
         <div class="table-cell px-4 py-2 font-bold">{{ __('data.table.category') }}</div>
         <div class="table-cell px-4 py-2 font-bold">{{ __('data.table.created-at') }}</div>
-        <div class="table-cell px-4 py-2 font-bold">Reactions</div>
+        <div class="table-cell px-4 py-2 font-bold">{{ __('data.table.reactions') }}</div>
         <div class="table-cell px-4 py-2 font-bold">Actions</div>
       </div>
       <div class="table-row-group">
@@ -45,7 +45,11 @@
               {{ $post->title }}
             </a>
             <div class="h-16 border-b-2 px-4 py-2 md:table-cell">
-              {{ $post->user->name }}
+              @if ($post->user == null)
+                  ( User Deleted )
+              @else
+                  {{ $post->user->name }}
+              @endif
             </div>
             <div class="h-16 border-b-2 px-4 py-2 md:table-cell capitalize">
               {{ $post->category->name }}
@@ -69,12 +73,11 @@
           </div>
         @endforeach
       </div>
+    </div>
 
-      <!-- Pagination -->
-      <div class="mt-6">
-        {{ $posts->links() }}
-      </div>
-
+    <!-- Pagination -->
+    <div class="mt-6 w-full">
+      {{ $posts->links() }}
     </div>
   </div>
 </div>

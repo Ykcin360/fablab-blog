@@ -34,14 +34,14 @@ body {
   /* Dark theme variables */
   --dark-primary-bg-color: #111827;
   --dark-secondary-bg-color: #1f2937;
-  --dark-border-color: #1f2937;
-  --dark-messagingView-bg-color: #101520;
+  --dark-border-color: #191d27;
+  --dark-messagingView-bg-color: #1f2937;
   --dark-scrollbar-thumb-color: #1f2937;
-  --dark-modal-bg-color: #111827;
+  --dark-modal-bg-color: #1f2937;
   --dark-send-input-icons-color: #c8c8c8;
   --dark-message-hint-bg-color: #1f2937;
   --dark-message-hint-color: #ffffff;
-  --dark-message-card-color: #1f2937;
+  --dark-message-card-color: #191d27;
 }
 
 /* NProgress background */

@@ -17,7 +17,7 @@
           </x-nav-link>
           @auth()
             <x-nav-link :href="route('my-posts')" :active="request()->routeIs('my-posts')">
-              {{ __('navigation.my-posts') }}
+                  {{ __('navigation.my-posts') }}
             </x-nav-link>
             <x-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
               {{ __('navigation.create-post') }}
@@ -147,13 +147,13 @@
       <x-responsive-nav-link :href="route('post.index')" :active="request()->routeIs('post.index')">
         {{ __('navigation.home') }}
       </x-responsive-nav-link>
-      <x-responsive-nav-link :href="route('my-posts')" :active="request()->routeIs('my-posts')">
-        {{ __('navigation.my-posts') }}
-      </x-responsive-nav-link>
-      <x-responsive-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
-        {{ __('navigation.create-post') }}
-      </x-responsive-nav-link>
       @auth()
+        <x-responsive-nav-link :href="route('my-posts')" :active="request()->routeIs('my-posts')">
+            {{ __('navigation.my-posts') }}
+        </x-responsive-nav-link>
+        <x-responsive-nav-link :href="route('posts.create')" :active="request()->routeIs('posts.create')">
+          {{ __('navigation.create-post') }}
+        </x-responsive-nav-link>
         @if (Auth::user()->is_admin == true)
           <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard') || request()->routeIs('admin.category')">
             {{ __('navigation.dashboard') }}
